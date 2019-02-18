@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="Admin.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>CyberGroup-HRMS</title>
+  </head>
+    
+    
+  <body>
+      <header>
+          <div class="card" >
+              <div class="card-header" >
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+                      <a class="navbar-brand " href="#" style="margin: 0">
+                          <img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 18rem; height: 5rem  " ></a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                              <li class="nav-item active" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary">
+                                      Add New Profile
+                                      <span class="sr-only">(current)</span>
+                                  </button>
+                              </li>
+                              <li class="nav-item" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary " onclick="location.href='skills.html';">
+                                      Add Skills
+                                  </button>
+                              </li>
+                              <li class="nav-item" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary " onclick="location.href='projects.html';">
+                                      Add Projects
+                                  </button>
+                              </li>
+                          </ul>
+                      </div>
+                  </nav>
+              </div>
+          </div>
+      </header>
+      <div class="card-body" id="list">
+          <div class = "container" style="text-align: center;">
+              <h1> Employees</h1>
+              <hr>
+              <div class="row mb-3">
+                  <div class="col-4 themed-grid-col">EmployeeID</div>
+                  <div class="col-4 themed-grid-col">Name</div>
+                  <div class="col-4 themed-grid-col">Email</div>
+              </div>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">Add New Employee</button>
+              <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header" style="background-color: #007bff ">
+                                                  <h5 class="modal-title" id="exampleModalLabel" >Add New Employee</h5>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form name="form1">
+                                                      <div class="form-group">
+                                                          <label for="new-user" class="col-form-label">Name</label>
+                                                          <input type="text" class="form-control" id="new-user">
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label for="email-id" class="col-form-label">E-mail ID</label>
+                                                          <input type="email" class="form-control" id="email-id" aria-describedby="emailHelp" name="text1" >
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label for="password" class="col-form-label">Password</label>
+                                                          <input type="password" class="form-control" id="password">
+                                                      </div>
+                                                  </form>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button type="button" class="btn btn-primary" onclick="ValidateEmail(document.form1.text1)">Update </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+              <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
+          </div>
+      </div>
+
+      <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%; left: 0; bottom: 0;">
+          <div class="card-footer">
+              <div class="container">
+                  © 2019 Copyright: Cygrp ||Bootcamp:
+              </div>
+          </div>
+      </footer>
+</body>
+</html>
