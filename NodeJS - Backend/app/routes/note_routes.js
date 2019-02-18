@@ -2,6 +2,7 @@ var ObjectID = require('mongodb').ObjectID
 
 module.exports = function(app, db) {
 
+        // GET all Elements
   app.get("/notes", (req, res) => {
       db.collection('notes').find({}).toArray((err, result) => {
           if(err) {
@@ -10,7 +11,59 @@ module.exports = function(app, db) {
           res.send(result);
       });
   });
+  app.get("/Skills", (req, res) => {
+      db.collection('Skills').find({}).toArray((err, result) => {
+          if(err) {
+              return res.status(500).send(err);
+          }
+          res.send(result);
+      });
+  });
+  app.get("/Projects", (req, res) => {
+      db.collection('Projects').find({}).toArray((err, result) => {
+          if(err) {
+              return res.status(500).send(err);
+          }
+          res.send(result);
+      });
+  });
 
+        // GET selected Elements
+  app.get('/notes/:id', (req, res) => {
+    const id = req.params.id
+    const details = {'_id': new ObjectID(id) };
+    db.collection('notes').findOne(details, (err,item) => {
+      if (err) {
+        res.send({'Error':'An error has occured in GET.'})
+      } else {
+        res.send(item)
+      };
+    });
+  });
+  app.get('/Skills/:id', (req, res) => {
+    const id = req.params.id
+    const details = {'_id': new ObjectID(id) };
+    db.collection('Skills').findOne(details, (err,item) => {
+      if (err) {
+        res.send({'Error':'An error has occured in GET.'})
+      } else {
+        res.send(item)
+      };
+    });
+  });
+  app.get('/Projects/:id', (req, res) => {
+    const id = req.params.id
+    const details = {'_id': new ObjectID(id) };
+    db.collection('Projects').findOne(details, (err,item) => {
+      if (err) {
+        res.send({'Error':'An error has occured in GET.'})
+      } else {
+        res.send(item)
+      };
+    });
+  });
+
+          //PUT selected Elements
   app.put('/notes/:id', (req, res) => {
     const id = req.params.id
     const details = {'_id': new ObjectID(id) };
@@ -24,7 +77,7 @@ module.exports = function(app, db) {
     });
   });
 
-
+        //Delete selected Elements
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id
     const details = {'_id': new ObjectID(id) };
@@ -37,15 +90,38 @@ module.exports = function(app, db) {
     });
   });
 
-  app.post('/notes', (req,res) => {
-    const note = { title: req.body.LoginID, title: req.body.Name, title: req.body.Password };
-    db.collection('notes').insert(note, (err, result) => {
-        if (err) {
-          res.send({'Error' : 'An error has occured in POST.'});
-        }
-        else {
-          res.send(result.ops[0])
-        }
-    });
-  });
+        // POST for single
+        app.post('/notes', (req,res) => {
+          const note = { title: req.body.LoginID, title: req.body.Name, title: req.body.Password };
+          db.collection('notes').insert(note, (err, result) => {
+              if (err) {
+                res.send({'Error' : 'An error has occured in POST.'});
+              }
+              else {
+                res.send(result.ops[0])
+              }
+          });
+        });
+        app.post('/Skills', (req,res) => {
+          const note = { title: req.body.LoginID, title: req.body.Name, title: req.body.Password };
+          db.collection('Skills').insert(note, (err, result) => {
+              if (err) {
+                res.send({'Error' : 'An error has occured in POST.'});
+              }
+              else {
+                res.send(result.ops[0])
+              }
+          });
+        });
+        app.post('/Projects', (req,res) => {
+          const note = { title: req.body.LoginID, title: req.body.Name, title: req.body.Password };
+          db.collection('Projects').insert(note, (err, result) => {
+              if (err) {
+                res.send({'Error' : 'An error has occured in POST.'});
+              }
+              else {
+                res.send(result.ops[0])
+              }
+          });
+        });
 };
