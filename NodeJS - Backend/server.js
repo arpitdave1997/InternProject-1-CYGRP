@@ -23,6 +23,7 @@ app.use(function(req, res, next){
     next();
 });
 app.use(bodyParser.urlencoded({ extended: true}))
+app.use(bodyParser.json({ extended: true}))
 
 MongoClient.connect(db.url, (err,database) => {
   if (err) return console.log(err)
