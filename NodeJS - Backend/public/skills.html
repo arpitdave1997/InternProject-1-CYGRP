@@ -12,23 +12,23 @@
 <body>
    <header>
           <div class="card" >
-              <div class="card-header" >
                   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
                       <a class="navbar-brand " href="#" style="margin: 0">
-                          <img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 18rem; height: 5rem  " ></a>
+                          <img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 16rem; height: 4.75rem  " ></a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                       </button>
                       <div class="collapse navbar-collapse" id="navbarNav">
                           <ul class="navbar-nav ml-auto my-2 my-lg-0">
                               <li class="nav-item active" style="padding: 1%">
-                                  <button type="button" class="btn btn-primary">
-                                      Add New Profile
+                                  <button type="button" class="btn btn-primary"
+                        onclick="location.href='home.html';">
+                                      Add Profile
                                       <span class="sr-only">(current)</span>
                                   </button>
                               </li>
                               <li class="nav-item" style="padding: 1%">
-                                  <button type="button" class="btn btn-primary " onclick="location.href='skills.html';">
+                                  <button type="button" class="btn btn-primary disabled " onclick="location.href='skills.html';">
                                       Add Skills
                                   </button>
                               </li>
@@ -37,20 +37,43 @@
                                       Add Projects
                                   </button>
                               </li>
-                              <li class="nav-item" style="padding: 1%">
+                              <li class="nav-item" style="padding:1%">
                               <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
                               </li>
                           </ul>
                       </div>
                   </nav>
               </div>
-          </div>
       </header>
     
     <div  class="container1">
   <h2>List Of Skills</h2>
         
-        <button type="button" onclick="window.location.href ='/createnew.html'" class="btn btn-outline-secondary">Add New Entry</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Add New Skill</button>
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header" style="background-color: #007bff ">
+                              <h5 class="modal-title" id="exampleModalLabel" >Add Skill</h5>
+                          </div>
+                          <div class="modal-body">
+                              <form>
+                                  <div class="form-group">
+                                      <label for="skill" class="col-form-label">Skills</label>
+                                      <input type="text" class="form-control" id="skill">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="message-text" class="col-form-label">Experience</label>
+                                      <textarea class="form-control" id="message-text"></textarea>
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Update </button>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
         <p>Click the row to Edit/Delete Entry</p>
   <table id="mytable" class="table table-dark table-responsive table-hover">
     <tbody title="Click the row to Edit/Delete Entry" data-brackets-id='7372'>
@@ -60,14 +83,12 @@
 </div>
     
     <!-- Footer -->
-    <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%; left: 0; bottom: 0;">
-          <div class="card-footer">
-              <div class="container">
+     <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%; left: 0; bottom: 0;">
+            <div class="container">
                   © 2019 Copyright: Cygrp ||Bootcamp:
-              </div>
-          </div>
-      </footer>
-</body>
+            </div>
+     </footer>
+     </body>
 </html>
 
    <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

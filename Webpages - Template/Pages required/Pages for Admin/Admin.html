@@ -43,20 +43,18 @@
                                     Add  Projects
                                   </button>
                               </li>
+                              <li class="nav-item" style="padding: 1%">
+                                   <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
+                              </li>
                           </ul>
                       </div>
                   </nav>
           </header>
-      <div class="card-body" id="list">
+      <div class="card-body" >
           <div class = "container" style="text-align: center;">
               <h1> Employees</h1>
               <hr>
-              <div class="my-3 p-3 bg-white rounded shadow-sm">
-              <div class="row mb-3">
-                  <div class="col-4 themed-grid-col">EmployeeID</div>
-                  <div class="col-4 themed-grid-col">Name</div>
-                  <div class="col-4 themed-grid-col">Email</div>
-              </div>
+              <div id="list">
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal0">Add New Employee</button>
               <div class="modal fade" id="exampleModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
@@ -87,8 +85,7 @@
                                           </div>
                                       </div>
                                   </div>
-              <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
-          </div>
+                       </div>
       </div>
 
       <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%; left: 0; bottom: 0;">
