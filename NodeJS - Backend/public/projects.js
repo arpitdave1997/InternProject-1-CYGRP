@@ -70,7 +70,7 @@
         
      $(document).ready(function(){
          
-        const Url = 'http://localhost:8000/notes';
+        const Url = 'http://localhost:8000/projects';
          const Url2 = 'http://localhost:62622/api/Designations';
                
         $.get(Url, function(data, status){
