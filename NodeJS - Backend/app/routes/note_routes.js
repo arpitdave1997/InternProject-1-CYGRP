@@ -129,14 +129,14 @@ module.exports = function(app, db) {
           });
 
         //Delete selected Elements
-        app.delete('/notes/:id', (req, res) => {
-          const id = req.params.id
-          const details = {'_id': new ObjectID(id) };
+        app.delete('/notes/:emailid', (req, res) => {
+          const mailid = req.params.emailid
+          const details = {'emailid': mailid };
           db.collection('notes').remove(details, (err,item) => {
             if (err) {
               res.send({'Error':'An error has occured in DELETE.'})
             } else {
-              res.send("Note" + id + "deleted");
+              res.send("Note" + mailid + "deleted");
             };
           });
         });

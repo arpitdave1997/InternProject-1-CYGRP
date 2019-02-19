@@ -67,7 +67,16 @@
         
     
   }
-        
+      
+function ValidateEmail(mail) 
+          {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form1.text1.value))
+            {
+                return (true)
+            }
+            alert("Invalid Email ID. Please enter your valid Email ID.")
+            return (false)
+          }
      $(document).ready(function(){
          
         const Url = 'http://localhost:8000/projects';

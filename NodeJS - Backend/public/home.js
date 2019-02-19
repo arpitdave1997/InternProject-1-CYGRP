@@ -5,7 +5,7 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="_id" && key!="admin") {
+                if (col.indexOf(key) === -1 && key!="_id" && key!="admin" && key!="skill"&& key!="project") {
                     col.push(key);
                 }
             }
@@ -67,6 +67,45 @@
         
     
   }
+function updateemployee(mail){
+ValidateEmail(mail);
+    var name= document.getElementById("new-user").value;
+    var emailid = document.getElementById("email-id").value ;
+    var password = document.getElementById("password").value;
+    
+    if(name !="" && emailid !="" && password!=""){
+    var myOBJ = JSON.stringify({
+        name,
+        emailid,
+        password
+    });
+        console.log(myOBJ);
+   $.ajax({
+        type:'POST',
+        url : 'http://localhost:8000/notes',
+        dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+        data:myOBJ,
+        success:function(res){
+        alert("Entry has been created");
+        window.location.href="home.html"
+    }
+    })
+     }
+    else
+        {
+        alert("Please enter all the values")
+        }
+    }
+function ValidateEmail(mail) 
+          {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form1.text1.value))
+            {
+                return (true)
+            }
+            alert("Invalid Email ID. Please enter your valid Email ID.")
+            return (false)
+          }
         
      $(document).ready(function(){
          
