@@ -2,7 +2,7 @@ var url = "";
 $(document).ready(function(){
     $.ajax({
         type: 'GET',
-        url: "http://localhost:8000/notes",
+        url: "http://localhost:8000/skills",
         dataType: "JSON",
         success: function(res){
             console.log("start");
@@ -21,8 +21,8 @@ $(document).ready(function(){
             
 //            th.textContent="name of table/collection row"
 
-            th1.textContent = "Employee_CGI_Code";
-            th2.textContent = "First_Name";
+            th1.textContent = "_id"
+            th2.textContent = "skill";
             th3.textContent = "Last_Name";
             
             
@@ -41,8 +41,8 @@ $(document).ready(function(){
                
                 
                 td1.className = "one";
-                td1.textContent = jsonObj[i].Employee_CGI_Code;
-                td2.textContent = jsonObj[i].First_Name;
+                td1.textContent = jsonObj[i]._id;
+                td2.textContent = jsonObj[i].skill;
                 td3.textContent = jsonObj[i].Last_Name;
                 
 //                Next 3 lines so as to click on id of employee it loads to next page that is user page
