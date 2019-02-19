@@ -2,15 +2,36 @@ var ObjectID = require('mongodb').ObjectID
 
 module.exports = function(app, db) {
 
+        // Enabling CORS
+        app.use(function(req, res, next) {
+          res.header("Access-Control-Allow-Origin", "*");
+          res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+          next();
+        });
+
+
+        // GET Elements by LoginID
+        app.get('/notes/:LoginID', (req, res) => {
+          const logid = req.params.LoginID
+          const details = {'LoginID': logid };
+          db.collection('notes').findOne(details, (err,item) => {
+            if (err) {
+              res.send({'Error':'An error has occured in GET.'})
+            } else {
+              res.send(item)
+            };
+          });
+        });
+
         // GET all Elements
-  app.get("/notes", (req, res) => {
-      db.collection('notes').find({}).toArray((err, result) => {
-          if(err) {
-              return res.status(500).send(err);
-          }
-          res.send(result);
-      });
-  });
+        app.get("/notes", (req, res) => {
+            db.collection('notes').find({}).toArray((err, result) => {
+                if(err) {
+                    return res.status(500).send(err);
+                }
+                res.send(result);
+            });
+        });
   app.get("/Skills", (req, res) => {
       db.collection('Skills').find({}).toArray((err, result) => {
           if(err) {
