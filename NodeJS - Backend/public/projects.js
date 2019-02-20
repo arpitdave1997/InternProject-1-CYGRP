@@ -5,7 +5,7 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="DesignationID") {
+                if (col.indexOf(key) === -1 && key!="_id" && key!="admin") {
                     col.push(key);
                 }
             }
@@ -67,7 +67,16 @@
         
     
   }
-        
+      
+function ValidateEmail(mail) 
+          {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form1.text1.value))
+            {
+                return (true)
+            }
+            alert("Invalid Email ID. Please enter your valid Email ID.")
+            return (false)
+          }
      $(document).ready(function(){
          
         const Url = 'http://localhost:8000/projects';

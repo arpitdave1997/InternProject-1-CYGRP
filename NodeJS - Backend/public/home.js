@@ -5,12 +5,12 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="DesignationID") {
+                if (col.indexOf(key) === -1 && key!="_id" && key!="admin" && key!="skill"&& key!="project") {
                     col.push(key);
                 }
             }
         }
-
+        // col.push("");
         // CREATE DYNAMIC TABLE.
         var table = document.getElementById("mytable");
 
@@ -29,11 +29,12 @@
         for (var i = 0; i < myBooks.length; i++) {
 
             tr = table.insertRow(-1);
-            tr.onclick = dynamicEvent;
+            
             for (var j = 0; j < col.length; j++) {
             if(col[j]!="Designation"){
                 var tabCell = tr.insertCell(-1);
-                
+                tr.setAttribute("id",myBooks[i]._id);
+//                tr.onclick = dynamicEvent;
                 tabCell.innerHTML = myBooks[i][col[j]];
             }
                 
@@ -44,12 +45,18 @@
                         console.log(myBooks[i]['Designation'].Name);
                     }
         }
+        var tabCell = tr.insertCell(-1);
+        var myimage = new Image(20,);
+        myimage.setAttribute("src","/del.png");
+        myimage.setAttribute("onclick","deleterow($(this).closest('tr').attr('id'));");
+        tabCell.appendChild(myimage);
+            
         }
 
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-      var divContainer = document.getElementById("showData");
-      divContainer.innerHTML = "";
-      divContainer.appendChild(table);
+//      var divContainer = document.getElementById("showData");
+//      divContainer.innerHTML = "";
+//      divContainer.appendChild(table);
     }
     
     function dynamicEvent() {
@@ -59,7 +66,7 @@
     //var t = document.getElementById("mytable");
    // var d = t.getElementsByTagName("tr")[1];
     var r = this.getElementsByTagName("td")[1]; 
-    console.log(r.innerHTML);
+    //console.log(r.innerHTML);
         var p = r.innerHTML;
        localStorage.setItem('Id', p);
     console.log(localStorage.getItem('Id'));
@@ -67,6 +74,69 @@
         
     
   }
+
+function deleterow(id){
+//     console.log($(this).closest('tr').attr('id'));
+    console.log(id);
+if (confirm("Do you really want to delete that entry?")) {
+//    console.log($(this).closest('tr').attr('id'));
+//    console.log(this.getElementsByName('id'));
+    $.ajax({
+        type:'DELETE',
+        url : 'http://localhost:8000/notes/'+id,
+        dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+//        data:myOBJ,
+        success:function(res){
+        alert("Entry has been deleted");
+        window.location.href="home.html"
+    }
+    })
+} else {
+  txt = "You pressed Cancel!";
+}
+}
+
+function updateemployee(mail){
+ValidateEmail(mail);
+    var name= document.getElementById("new-user").value;
+    var emailid = document.getElementById("email-id").value ;
+    var password = document.getElementById("password").value;
+    
+    if(name !="" && emailid !="" && password!=""){
+    var myOBJ = JSON.stringify({
+        name,
+        emailid,
+        password,
+        admin : false
+    });
+        console.log(myOBJ);
+   $.ajax({
+        type:'POST',
+        url : 'http://localhost:8000/notes',
+        dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+        data:myOBJ,
+        success:function(res){
+        alert("Entry has been created");
+        window.location.href="home.html"
+    }
+    })
+     }
+    else
+        {
+        alert("Please enter all the values")
+        }
+    }
+function ValidateEmail(mail) 
+          {
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form1.text1.value))
+            {
+                return (true)
+            }
+            alert("Invalid Email ID. Please enter your valid Email ID.")
+            return (false)
+          }
         
      $(document).ready(function(){
          

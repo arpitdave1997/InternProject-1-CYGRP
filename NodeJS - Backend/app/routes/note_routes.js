@@ -167,7 +167,7 @@ module.exports = function(app, db) {
 
         // POST for single
         app.post('/notes', (req,res) => {
-          const note = { name: req.body.name, emailid: req.body.emailid, password: req.body.password, skill: req.body.skill, project: req.body.project };
+          const note = { name: req.body.name, emailid: req.body.emailid, password: req.body.password, skill: req.body.skill, project: req.body.project, admin: req.body.admin };
           db.collection('notes').insert(note, (err, result) => {
               if (err) {
                 res.send({'Error' : 'An error has occured in POST.'});
@@ -179,7 +179,7 @@ module.exports = function(app, db) {
         });
 
         app.post('/Skills', (req,res) => {
-          const note = { skill: req.body.skill };
+          const note = { skillid: req.body.skillid, skill: req.body.skill };
           db.collection('Skills').insert(note, (err, result) => {
               if (err) {
                 res.send({'Error' : 'An error has occured in POST.'});

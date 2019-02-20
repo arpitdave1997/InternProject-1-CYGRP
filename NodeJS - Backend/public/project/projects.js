@@ -5,7 +5,7 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="_id") {
+                if (col.indexOf(key) === -1 && key!="DesignationID") {
                     col.push(key);
                 }
             }
@@ -29,11 +29,11 @@
         for (var i = 0; i < myBooks.length; i++) {
 
             tr = table.insertRow(-1);
-//            tr.onclick = dynamicEvent;
+            tr.onclick = dynamicEvent;
             for (var j = 0; j < col.length; j++) {
             if(col[j]!="Designation"){
                 var tabCell = tr.insertCell(-1);
-                tr.setAttribute("id",myBooks[i]._id);
+                
                 tabCell.innerHTML = myBooks[i][col[j]];
             }
                 
@@ -44,11 +44,6 @@
                         console.log(myBooks[i]['Designation'].Name);
                     }
         }
-        var tabCell = tr.insertCell(-1);
-        var myimage = new Image(20,);
-        myimage.setAttribute("src","/del.png");
-        myimage.setAttribute("onclick","deleterow($(this).closest('tr').attr('id'));");
-        tabCell.appendChild(myimage);
         }
 
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
@@ -72,68 +67,16 @@
         
     
   }
-
-function deleterow(id){
-//     console.log($(this).closest('tr').attr('id'));
-    console.log(id);
-if (confirm("Do you really want to delete that entry?")) {
-//    console.log($(this).closest('tr').attr('id'));
-//    console.log(this.getElementsByName('id'));
-    $.ajax({
-        type:'DELETE',
-        url : 'http://localhost:8000/skills/'+id,
-        dataType:"TEXT",
-        contentType: "application/json; charset=utf-8",
-//        data:myOBJ,
-        success:function(res){
-        alert("Entry has been deleted");
-        window.location.href="skills.html"
-    }
-    })
-} else {
-  txt = "You pressed Cancel!";
-}
-}
-function updateskill(){
-
-    var skill= document.getElementById("skill").value;
-    var skillid = arr.length + 1;
-    console.log("bc"+skillid);
-    if(skill !=""){
-    var myOBJ = JSON.stringify({
-        skillid,
-        skill
-    });
-        console.log(myOBJ);
-   $.ajax({
-        type:'POST',
-        url : 'http://localhost:8000/skills',
-        dataType:"TEXT",
-        contentType: "application/json; charset=utf-8",
-        data:myOBJ,
-        success:function(res){
-        alert("Entry has been created");
-        window.location.href="skills.html"
-    }
-    })
-     }
-    else
-        {
-        alert("Please enter all the values")
-        }
-    }
         
      $(document).ready(function(){
          
-        const Url = 'http://localhost:8000/skills';
+        const Url = 'http://localhost:8000/projects';
          const Url2 = 'http://localhost:62622/api/Designations';
                
         $.get(Url, function(data, status){
             console.log(data);
           arr =data;
-             console.log(arr.length);
             CreateTableFromJSON();
-           
         });         
          
         $.get(Url2, function(data, status){
