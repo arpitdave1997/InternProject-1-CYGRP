@@ -1,4 +1,6 @@
  var arr=[];
+var drop =[];
+var user =[];
      function CreateTableFromJSON() {
         var myBooks = arr;
         // EXTRACT VALUE FOR HTML HEADER. 
@@ -52,6 +54,69 @@
       divContainer.appendChild(table);
     }
     
+function dropdown(){
+    var node = document.getElementById("skilldrop");
+for(i=0;i<drop.length;i++)
+{ 
+var op = new Option();
+op.value = drop[i].skill;
+op.text = drop[i].skill;
+node.options.add(op); 
+}
+    
+}
+function recommend(){
+    var node = document.getElementById("empdrop");
+    $("#empdrop").empty();
+    var skill=[];
+skill= $("#skilldrop").val();
+    console.log(skill);
+    for (i=0;i<user.length;i++)
+        {   
+         if(user[i].skill){
+             
+            if(user[i].skill.some(r=> skill.indexOf(r) >= 0))
+                {   console.log(user[i].skill);
+                    var op = new Option();
+                    op.value = user[i]._id;
+                    op.text = user[i].name +" - [ " +user[i].skill+" ]";
+;                   node.options.add(op);
+                }
+         }
+        }
+    
+}
+function project(){
+    
+    var skill= $("#skilldrop").val();
+    var name = document.getElementById("project-name").value;
+   // console.log("bc"+skillid);
+    var projectid = arr.length + 1;
+    if(skill !="" && name!=""){
+    var myOBJ = JSON.stringify({
+        projectid,
+        name,
+        skill
+    });
+        console.log(name);
+   $.ajax({
+        type:'POST',
+        url : 'http://localhost:8000/Projects',
+        dataType:"TEXT",
+        contentType: "application/json; charset=utf-8",
+        data:myOBJ,
+        success:function(res){
+        alert("Entry has been created");
+        window.location.href="projects.html"
+    }
+    })
+     }
+    else
+        {
+        alert("Please enter all the values")
+        }
+    }
+
     function dynamicEvent() {
         //var getIdFromRow = this.getElementsByName('Id');
         //var table = document.getElementById('mytable');
@@ -80,7 +145,8 @@ function ValidateEmail(mail)
      $(document).ready(function(){
          
         const Url = 'http://localhost:8000/projects';
-         const Url2 = 'http://localhost:62622/api/Designations';
+         const Url2 = 'http://localhost:8000/skills';
+         const Url3 = 'http://localhost:8000/notes';
                
         $.get(Url, function(data, status){
             console.log(data);
@@ -90,10 +156,14 @@ function ValidateEmail(mail)
          
         $.get(Url2, function(data, status){
             console.log(data);
-          //arr =data;
-            //CreateTableFromJSON();
+          drop =data;
+            dropdown();
         }); 
-         
+          $.get(Url3, function(data, status){
+            console.log(data);
+          user =data;
+            
+        }); 
         
         $('.table > tbody > tr').click(function() {
             //var $item = $(this).arr;
@@ -111,6 +181,15 @@ function ValidateEmail(mail)
        
             $('.table > tbody > tr').dblclick(function(e){ 
             $('#hey').empty();
+$("#skilldrop").on("select2:select select2:unselect", function (e) {
+
+    //this returns all the selected item
+    var items= $(this).val();       
+
+    //Gets the last selected item
+    var lastSelectedItem = e.params.data.id;
+console.log(items,lastSelectedItem);
+})
         });
          
     CreateTableFromJSON();

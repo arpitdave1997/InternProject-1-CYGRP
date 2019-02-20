@@ -67,11 +67,14 @@
         
     
   }
+function dropdown(data){
+    
+}
         
      $(document).ready(function(){
          
         const Url = 'http://localhost:8000/projects';
-         const Url2 = 'http://localhost:62622/api/Designations';
+         const Url2 = 'http://localhost:8000/skills';
                
         $.get(Url, function(data, status){
             console.log(data);
@@ -82,7 +85,7 @@
         $.get(Url2, function(data, status){
             console.log(data);
           //arr =data;
-            //CreateTableFromJSON();
+            //dropdown(data);
         }); 
          
         

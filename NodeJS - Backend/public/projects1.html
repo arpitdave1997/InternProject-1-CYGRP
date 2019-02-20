@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+        <meta  charset="utf-8">
+        <meta  name="viewport" content="width=device-width, initial-scale=1.0">
+        <title >Sign Up Form</title>
+        <link  rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="projects.js"></script>
+</head>
+<body>
+   <header>
+          <div class="card" >
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+                      <a class="navbar-brand " href="#" style="margin: 0">
+                          <img src="logo.png" class="img-fluid" alt="Responsive image" class="float-left" style="width: 16rem; height: 4.75rem  " ></a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                              <li class="nav-item active" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary"
+                        onclick="location.href='home.html';">
+                                      Add Profile
+                                      <span class="sr-only">(current)</span>
+                                  </button>
+                              </li>
+                              <li class="nav-item" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary" onclick="location.href='skills.html';">
+                                      Add Skills
+                                  </button>
+                              </li>
+                              <li class="nav-item" style="padding: 1%">
+                                  <button type="button" class="btn btn-primary disabled " onclick="location.href='projects.html';">
+                                      Add Projects
+                                  </button>
+                              </li>
+                              <li class="nav-item" style="padding:1%">
+                              <button type="button" class="btn btn-dark" onclick="location.href='index.html';">Sign Out</button>
+                              </li>
+                          </ul>
+                      </div>
+                  </nav>
+              </div>
+      </header>
+    
+    <div  class="container1">
+  <h2>List Of Projects</h2>
+        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">Add New Project</button>
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #007bff ">
+                        <h5 class="modal-title" id="exampleModalLabel" >Add Projects</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="project-name" class="col-form-label">Project Name</label>
+                                <input type="text" class="form-control" id="project-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="skill suggestions" class="col-form-label">Skills required for Project</label>
+                                <select id="skilldropdown" multiple="true" class="js-example-basic-multiple" style="width: 100%">
+                                    <option value="AL" id="p1">P1</option>
+                                    <option value="WY" id="p2">P2</option>
+                                    <option value="WY" id="p3">P3</option>
+                                    <option value="WY" id="p4">P4</option>
+                                    <option value="WY" id="p5">P5</option>
+                                </select>
+<label for="employee suggestion" >Reccomended Employees</label>
+                                <select multiple="true" class="pop" style="width: 100%">
+                                    <option value="AL" id="p1">P1</option>
+                                    <option value="WY" id="p2">P2</option>
+                                    <option value="WY" id="p3">P3</option>
+                                    <option value="WY" id="p4">P4</option>
+                                    <option value="WY" id="p5">P5</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Update </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+        <p>Click the row to Edit/Delete Entry</p>
+  <table id="mytable" class="table table-dark table-responsive table-hover">
+    <tbody title="Click the row to Edit/Delete Entry" data-brackets-id='7372'>
+    </tbody>
+  </table>
+    <div id="hey"></div> 
+</div>
+    
+    <!-- Footer -->
+    <footer class="footer text-center py-3" style="background-color: #f5f5f5; position:absolute; width:100%; left: 0; bottom: 0;">
+            <div class="container">
+                  © 2019 Copyright: Cygrp ||Bootcamp:
+            </div>
+     </footer>
+</body>
+</html>
+
+   <script  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script data-brackets-id='7431' src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

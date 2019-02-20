@@ -191,7 +191,7 @@ module.exports = function(app, db) {
         });
 
         app.post('/Projects', (req,res) => {
-          const note = { name: req.body.name, skill: req.body.skill };  // Check if it passes Array
+          const note = {projectid: req.body.projectid, name: req.body.name, skill: req.body.skill };  // Check if it passes Array
           db.collection('Projects').insert(note, (err, result) => {
               if (err) {
                 res.send({'Error' : 'An error has occured in POST.'});
