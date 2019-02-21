@@ -11,9 +11,9 @@ module.exports = function(app, db) {
 
 
         // GET Elements by LoginID
-        app.get('/notes/:EmailID', (req, res) => {
+        app.get('/notes/:emailid', (req, res) => {
           const mailid = req.params.emailid
-          const details = {'EmailID': mailid };
+          const details = {'emailid': mailid };
           db.collection('notes').findOne(details, (err,item) => {
             if (err) {
               res.status(500).send({'Error':'An error has occured in GET.'})
