@@ -12,7 +12,7 @@ module.exports = function(app, db) {
 
         // GET Elements by LoginID
         app.get('/notes/:EmailID', (req, res) => {
-          const mailid = req.params.LoginID
+          const mailid = req.params.emailid
           const details = {'EmailID': mailid };
           db.collection('notes').findOne(details, (err,item) => {
             if (err) {
