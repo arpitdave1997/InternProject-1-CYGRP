@@ -5,7 +5,7 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="_id" && key!="admin" && key!="skill"&& key!="project") {
+                if (col.indexOf(key) === -1 && key!="_id"  && key!="skill"&& key!="project"&& key!="skills"&& key!="__v") {
                     col.push(key);
                 }
             }
@@ -83,7 +83,7 @@ if (confirm("Do you really want to delete that entry?")) {
 //    console.log(this.getElementsByName('id'));
     $.ajax({
         type:'DELETE',
-        url : 'http://localhost:8000/notes/'+id,
+        url : 'http://localhost:8000/employee/'+id,
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
 //        data:myOBJ,
@@ -100,27 +100,35 @@ if (confirm("Do you really want to delete that entry?")) {
 function updateemployee(mail){
 ValidateEmail(mail);
     var name= document.getElementById("new-user").value;
-    var emailid = document.getElementById("email-id").value ;
+    var email = document.getElementById("email-id").value ;
     var password = document.getElementById("password").value;
     
-    if(name !="" && emailid !="" && password!=""){
+    if(name !="" && email !="" && password!=""){
     var myOBJ = JSON.stringify({
         name,
-        emailid,
+        email,
         password,
         admin : false
     });
         console.log(myOBJ);
    $.ajax({
         type:'POST',
-        url : 'http://localhost:8000/notes',
+        url : 'http://localhost:8000/employee',
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         data:myOBJ,
         success:function(res){
         alert("Entry has been created");
         window.location.href="home.html"
+    },
+       statusCode: {
+    409: function() {
+      alert('409 status code! Email exists');
+    },
+    500: function() {
+      alert('500 status code! server error');
     }
+       }
     })
      }
     else
@@ -140,7 +148,7 @@ function ValidateEmail(mail)
         
      $(document).ready(function(){
          
-        const Url = 'http://localhost:8000/notes';
+        const Url = 'http://localhost:8000/employee';
          const Url2 = 'http://localhost:62622/api/Designations';
                
         $.get(Url, function(data, status){

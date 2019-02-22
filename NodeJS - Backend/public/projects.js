@@ -7,7 +7,7 @@ var user =[];
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="_id" && key!="admin") {
+                if (col.indexOf(key) === -1 && key!="_id" && key!="admin" && key!="__v") {
                     col.push(key);
                 }
             }
@@ -88,20 +88,20 @@ skill= $("#skilldrop").val();
 }
 function project(){
     
-    var skill= $("#skilldrop").val();
+    var technology= $("#skilldrop").val();
     var name = document.getElementById("project-name").value;
    // console.log("bc"+skillid);
-    var projectid = arr.length + 1;
-    if(skill !="" && name!=""){
+    var status = document.getElementById("status").value;
+    if(technology !="" && name!="" && status!=""){
     var myOBJ = JSON.stringify({
-        projectid,
+        technology,
         name,
-        skill
+        status
     });
         console.log(name);
    $.ajax({
         type:'POST',
-        url : 'http://localhost:8000/Projects',
+        url : 'http://localhost:8000/project',
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         data:myOBJ,
@@ -144,9 +144,9 @@ function ValidateEmail(mail)
           }
      $(document).ready(function(){
          
-        const Url = 'http://localhost:8000/projects';
+        const Url = 'http://localhost:8000/project';
          const Url2 = 'http://localhost:8000/skills';
-         const Url3 = 'http://localhost:8000/notes';
+         const Url3 = 'http://localhost:8000/employee';
                
         $.get(Url, function(data, status){
             console.log(data);

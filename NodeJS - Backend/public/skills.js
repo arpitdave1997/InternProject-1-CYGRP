@@ -5,7 +5,7 @@
         var col = [];
         for (var i = 0; i < myBooks.length; i++) {
             for (var key in myBooks[i]) {
-                if (col.indexOf(key) === -1 && key!="_id") {
+                if (col.indexOf(key) === -1 && key!="_id" && key!="__v") {
                     col.push(key);
                 }
             }
