@@ -84,6 +84,7 @@ if (confirm("Do you really want to delete that entry?")) {
         url : 'http://localhost:8000/skills/'+id,
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
+         headers: { 'authorization': localStorage.getItem('token') },
 //        data:myOBJ,
         success:function(res){
         alert("Entry has been deleted");
@@ -111,6 +112,7 @@ function updateskill(){
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         data:myOBJ,
+        headers: { 'authorization': localStorage.getItem('token') },
         success:function(res){
         alert("Entry has been created");
         window.location.href="skills.html"
@@ -127,14 +129,24 @@ function updateskill(){
          
         const Url = 'http://localhost:8000/skills';
          const Url2 = 'http://localhost:62622/api/Designations';
-               
-        $.get(Url, function(data, status){
-            console.log(data);
+          $.ajax({
+    headers: { 'authorization': localStorage.getItem('token') },
+    url: Url,
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(data) {
+    // do something with the response, e.g. isolate the id of a linked resource   
+    console.log(data);
           arr =data;
-             console.log(arr.length);
             CreateTableFromJSON();
-           
-        });         
+  });     
+//        $.get(Url, function(data, status){
+//            console.log(data);
+//          arr =data;
+//             console.log(arr.length);
+//            CreateTableFromJSON();
+//           
+//        });         
          
         $.get(Url2, function(data, status){
             console.log(data);

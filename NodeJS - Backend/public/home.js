@@ -87,6 +87,7 @@ if (confirm("Do you really want to delete that entry?")) {
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
 //        data:myOBJ,
+        headers: { 'authorization': localStorage.getItem('token') },
         success:function(res){
         alert("Entry has been deleted");
         window.location.href="home.html"
@@ -117,6 +118,7 @@ ValidateEmail(mail);
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         data:myOBJ,
+        headers: { 'authorization': localStorage.getItem('token') },
         success:function(res){
         alert("Entry has been created");
         window.location.href="home.html"
@@ -149,19 +151,30 @@ function ValidateEmail(mail)
      $(document).ready(function(){
          
         const Url = 'http://localhost:8000/employee';
-         const Url2 = 'http://localhost:62622/api/Designations';
-               
-        $.get(Url, function(data, status){
-            console.log(data);
+//         const Url2 = 'http://localhost:62622/api/Designations';
+        
+         $.ajax({
+    headers: { 'authorization': localStorage.getItem('token') },
+    url: Url,
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(data) {
+    // do something with the response, e.g. isolate the id of a linked resource   
+    console.log(data);
           arr =data;
             CreateTableFromJSON();
-        });         
+  });
+//        $.get(Url, function(data, status){
+//            console.log(data);
+//          arr =data;
+//            CreateTableFromJSON();
+//        });         
          
-        $.get(Url2, function(data, status){
-            console.log(data);
-          //arr =data;
-            //CreateTableFromJSON();
-        }); 
+//        $.get(Url2, function(data, status){
+//            console.log(data);
+//          //arr =data;
+//            //CreateTableFromJSON();
+//        }); 
          
         
         $('.table > tbody > tr').click(function() {

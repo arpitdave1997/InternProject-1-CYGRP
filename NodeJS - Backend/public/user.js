@@ -22,6 +22,7 @@ skill.push(skill1);
         url : 'http://localhost:8000/employee/'+id,
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
+        headers: { 'authorization': localStorage.getItem('token') },
         data:myOBJ,
         success:function(res){
         alert("Entry has been updated");
@@ -42,6 +43,7 @@ function getProjects(){
         url:'http://localhost:8000/employee/'+id,
         type: 'GET',
         dataType: 'json',
+         headers: { 'authorization': localStorage.getItem('token') },
         success: function(data){
             console.log(data);
             
@@ -50,14 +52,16 @@ function getProjects(){
 //            console.log(l.length);
             console.log(arr);
            // CreateTableFromJSON(arr,"mytable");
+            if(arr){
             for(i =1; i<Object.keys(arr).length;i++){
                // console.log(arr[i].name);
                 $('#mytable').append("<tr><td>"+arr.name+"</td>"+"<td>"+arr.status +"</td></tr>");
             }
-            
+            }
             getSkills();
              allSkills();
-        } 
+        
+        }
     
     });
 }
@@ -69,6 +73,7 @@ function getSkills(){
         url:'http://localhost:8000/employee/'+id,
         type: 'GET',
         dataType: 'json',
+         headers: { 'authorization': localStorage.getItem('token') },
         success: function(data){
             console.log(data);
             var arr=data.skill;
@@ -85,9 +90,9 @@ function allSkills(){
      $.ajax({
         url:'http://localhost:8000/skills',
         type: 'GET',
+        headers: { 'authorization': localStorage.getItem('token') },
         dataType: 'json',
         success: function(res){
-            
             console.log(res);
             $.each(res, function(i,item){
                 $('#skilldrop').append($('<option>',{

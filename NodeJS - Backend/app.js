@@ -9,7 +9,7 @@ var bcrypt = require("bcrypt");
 
 var jwt = require("jsonwebtoken");
  
-
+const checkAuth = require(__dirname+'/middleware/check-auth');
 app.use(express.static(__dirname+'/public'))
 //cors issue
 var cors = require('cors');
@@ -44,8 +44,8 @@ app.get("/",function(req,res){
 
 });
 
-app.get('/Employee',function(req,res)
-{
+app.get('/Employee',checkAuth,function(req,res)
+{   
 	console.log('getting all employees');
 	Employee.find({})
 	.exec(function(err,employee){
@@ -62,7 +62,7 @@ app.get('/Employee',function(req,res)
 	});
 	
 });
-app.get('/Employee/:id',function(req,res)
+app.get('/Employee/:id',checkAuth,function(req,res)
 {
 	console.log('getting a specific employee');
 	Employee.findOne({_id:req.params.id})
@@ -113,7 +113,7 @@ app.get('/Employee/:id',function(req,res)
 	
 });*/
 
-app.put('/Employee/:id',function(req,res){
+app.put('/Employee/:id',checkAuth,function(req,res){
 	
 	Employee.findOneAndUpdate({_id:req.params.id},{$set:{skill:req.body.skill}},{upsert:true},
 	function(err,newemployee)
@@ -132,7 +132,7 @@ app.put('/Employee/:id',function(req,res){
 	
 });
 
-app.delete('/Employee/:id',function(req,res)
+app.delete('/Employee/:id',checkAuth,function(req,res)
 {
 	Employee.deleteOne({_id:req.params.id},function(err,employee)
 		{
@@ -152,7 +152,7 @@ app.delete('/Employee/:id',function(req,res)
 	
 });
 
-app.get('/Project',function(req,res)
+app.get('/Project',checkAuth,function(req,res)
 {
 	console.log('getting all projects');
 	Project.find({})
@@ -170,7 +170,7 @@ app.get('/Project',function(req,res)
 	});
 	
 });
-app.get('/Project/:id',function(req,res)
+app.get('/Project/:id',checkAuth,function(req,res)
 {
 	console.log('getting a specific project');
 	Project.findOne({_id:req.params.id})
@@ -188,7 +188,7 @@ app.get('/Project/:id',function(req,res)
 	});
 	
 });
-app.post('/Project',function(req,res)
+app.post('/Project',checkAuth,function(req,res)
 {
 	var newproject=new Project();
 	newproject.name=req.body.name;
@@ -211,12 +211,11 @@ app.post('/Project',function(req,res)
 	});
 	
 	
-	
-});
+	});
 
 
 
-app.delete('/Project/:id',function(req,res)
+app.delete('/Project/:id',checkAuth,function(req,res)
 {
 	Project.deleteOne({_id:req.params.id},function(err,project)
 		{
@@ -237,7 +236,7 @@ app.delete('/Project/:id',function(req,res)
 });
 
 
-app.get('/skills',function(req,res)
+app.get('/skills',checkAuth,function(req,res)
 {
 	console.log('getting all technology');
 	Technology.find({})
@@ -257,7 +256,7 @@ app.get('/skills',function(req,res)
 });
 
 
-app.post('/skills',function(req,res)
+app.post('/skills',checkAuth,function(req,res)
 {
 	var newTechnology =new Technology();
 	newTechnology.skillid=req.body.skillid;
@@ -282,7 +281,7 @@ app.post('/skills',function(req,res)
 	
 	
 });
-app.delete('/skills/:id',function(req,res)
+app.delete('/skills/:id',checkAuth,function(req,res)
 {
 	Technology.deleteOne({_id:req.params.id},function(err,technology)
 		{
@@ -301,7 +300,7 @@ app.delete('/skills/:id',function(req,res)
 	
 	
 });
-app.get('/skills',function(req,res)
+app.get('/skills',checkAuth,function(req,res)
 {
 	console.log('getting all technology');
 	Technology.find({})
@@ -322,7 +321,7 @@ app.get('/skills',function(req,res)
 
 //routes for signup and login
 
-app.post("/Employee", (req, res, next) => {
+app.post("/Employee",checkAuth, (req, res, next) => {
 
   Employee.find({ email: req.body.email })
 
@@ -470,7 +469,7 @@ app.post("/login", (req, res, next) => {
 
         }
 
-        res.send.json( {
+        res.status(401).json({
 
           message: "Auth failed !!!"
 

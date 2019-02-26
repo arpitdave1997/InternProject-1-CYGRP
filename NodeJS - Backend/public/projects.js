@@ -105,6 +105,7 @@ function project(){
         dataType:"TEXT",
         contentType: "application/json; charset=utf-8",
         data:myOBJ,
+        headers: { 'authorization': localStorage.getItem('token') },
         success:function(res){
         alert("Entry has been created");
         window.location.href="projects.html"
@@ -147,23 +148,53 @@ function ValidateEmail(mail)
         const Url = 'http://localhost:8000/project';
          const Url2 = 'http://localhost:8000/skills';
          const Url3 = 'http://localhost:8000/employee';
-               
-        $.get(Url, function(data, status){
-            console.log(data);
+               $.ajax({
+    headers: { 'authorization': localStorage.getItem('token') },
+    url: Url,
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(data) {
+    // do something with the response, e.g. isolate the id of a linked resource   
+    console.log(data);
           arr =data;
             CreateTableFromJSON();
-        });         
-         
-        $.get(Url2, function(data, status){
-            console.log(data);
-          drop =data;
+  });
+//        $.get(Url, function(data, status){
+//            console.log(data);
+//          arr =data;
+//            CreateTableFromJSON();
+//        });         
+//         
+         $.ajax({
+    headers: { 'authorization': localStorage.getItem('token') },
+    url: Url2,
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(data) {
+    // do something with the response, e.g. isolate the id of a linked resource   
+  drop =data;
             dropdown();
-        }); 
-          $.get(Url3, function(data, status){
-            console.log(data);
+  });
+//        $.get(Url2, function(data, status){
+//            console.log(data);
+//          drop =data;
+//            dropdown();
+//        }); 
+         $.ajax({
+    headers: { 'authorization': localStorage.getItem('token') },
+    url: Url3,
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(data) {
+    // do something with the response, e.g. isolate the id of a linked resource   
+ console.log(data);
           user =data;
-            
-        }); 
+  });
+//          $.get(Url3, function(data, status){
+//            console.log(data);
+//          user =data;
+//            
+//        }); 
         
         $('.table > tbody > tr').click(function() {
             //var $item = $(this).arr;
