@@ -39,8 +39,8 @@ app.listen(port,function()
 )
 
 app.get("/",function(req,res){
-	console.log("welcome");
-	res.send("this is just to check whether the services are working or not");
+
+	res.send("check");
 
 });
 
@@ -81,37 +81,6 @@ app.get('/Employee/:id',checkAuth,function(req,res)
 	
 });
 
-/*app.post('/Employee',function(req,res)
-{
-	var newemployee=new Employee();
-	newemployee.user_name=req.body.user_name;
-	newemployee.email=req.body.email;
-	newemployee.password=req.body.password;
-   newemployee.skills=req.body.skills;
-	newemployee.admin=req.body.admin;
-	
-	
-	newemployee.save(function(err,employee)
-	
-	
-
-	{ if(err)
-		{
-			res.send('error saving employees');
-			
-		}
-		else{
-			
-			console.log(employee);
-			res.send('emloyee adeed');
-			
-			
-		}
-	});
-	
-	
-	
-});*/
 
 app.put('/Employee/:id',checkAuth,function(req,res){
 	
@@ -188,6 +157,7 @@ app.get('/Project/:id',checkAuth,function(req,res)
 	});
 	
 });
+
 app.post('/Project',checkAuth,function(req,res)
 {
 	var newproject=new Project();

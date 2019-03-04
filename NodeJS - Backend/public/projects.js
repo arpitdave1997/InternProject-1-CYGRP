@@ -89,10 +89,11 @@ skill= $("#skilldrop").val();
 function project(){
     
     var technology= $("#skilldrop").val();
+    var empid = $("empdrop").val();
     var name = document.getElementById("project-name").value;
    // console.log("bc"+skillid);
     var status = document.getElementById("status").value;
-    if(technology !="" && name!="" && status!=""){
+    if(technology !="" && name!="" && status!="" && empid!=""){
     var myOBJ = JSON.stringify({
         technology,
         name,
@@ -111,6 +112,7 @@ function project(){
         window.location.href="projects.html"
     }
     })
+//        for(var i = empid.length)
      }
     else
         {
